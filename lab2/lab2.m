@@ -2,19 +2,20 @@ clear all; clc; close all;
 
 % K(s) = k/(Ts + 1)
 k = 1;
-T = 1;
+T = 2;
 
 sys = tf(k, [T, 1]);
-omega_w = 1:2:10;
+omega_w = 1:10;
 
+omega_1 = 0.2 -0.4i;
 
-% Nyquist z Control Toolbox
 figure(1); 
 hold on; grid on;
 set(gcf,'color','w');
 set(0, 'DefaultLineLineWidth', 2);
+plot(omega_1, 'o');
 nyquist(sys);
-nyquist(sys, omega_w, 'o');
+nyquist(sys, omega_w, 'x');
 
 
 figure(2);
