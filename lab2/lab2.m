@@ -5,18 +5,21 @@ k = 1;
 T = 2;
 
 sys = tf(k, [T, 1]);
-omega_w = 1:10;
+omega_w = 1:2:10;
 
 omega_1 = 0.2 -0.4i;
 
-figure(1); 
-hold on; grid on;
-set(gcf,'color','w');
-set(0, 'DefaultLineLineWidth', 2);
-plot(omega_1, 'o');
-nyquist(sys);
-nyquist(sys, omega_w, 'x');
+% figure(1);
+% hold on; grid on;
+% set(gcf,'color','w');
+% set(0, 'DefaultLineLineWidth', 2);
+% nyquist(sys);
+% nyquist(sys);
 
+omega_1 = 0.2-0.4i;
+
+Title = ["$k = 2, \quad \omega = 1$", "$k = 2, \quad \omega = 3$", ...
+    "$k = 2, \quad \omega = 5$", "$k = 2, \quad \omega = 7$",  "$k = 2, \quad \omega = 9$"];
 
 figure(2);
 set(gcf,'color','w');
@@ -25,9 +28,9 @@ for i = 1:length(omega_w)
     omega = omega_w(i);
     sim('zad12.slx', 10);
     subplot(length(omega_w), 1, i);
-    title("omega: " + omega);
+    title(Title(i), 'Interpreter', 'latex', 'FontSize', 14);
     hold on; grid on;
-    plot(ans.u, 'color', 'r');
-    plot(ans.y, 'color', 'b');
+    plot(ans.u, 'color', 'r'); % wejście
+    plot(ans.y, 'color', 'b'); % wyjście
 end
 
