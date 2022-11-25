@@ -7,16 +7,21 @@ T = 2;
 sys = tf(k, [T, 1]);
 omega_w = 1:2:10;
 
-omega_1 = 0.2 -0.4i;
+omega_points = [];
 
-% figure(1);
-% hold on; grid on;
-% set(gcf,'color','w');
-% set(0, 'DefaultLineLineWidth', 2);
-% nyquist(sys);
-% nyquist(sys);
+for idx = 1:length(omega_w)
+    omega_points(idx) = k/(T*i*omega_w(idx) + 1);
+end
 
-omega_1 = 0.2-0.4i;
+omega_points
+
+
+figure(1);
+hold on; grid on;
+set(gcf,'color','w');
+set(0, 'DefaultLineLineWidth', 2);
+nyquist(sys);
+nyquist(sys, 'r*', omega_w);
 
 Title = ["$k = 2, \quad \omega = 1$", "$k = 2, \quad \omega = 3$", ...
     "$k = 2, \quad \omega = 5$", "$k = 2, \quad \omega = 7$",  "$k = 2, \quad \omega = 9$"];
