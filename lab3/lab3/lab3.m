@@ -1,6 +1,6 @@
 clear all; close all; clc;
 
-time = 15;
+time = 20;
 
 M = 0.5;
 m = 0.2;
@@ -11,19 +11,18 @@ g = 9.8;
 A = [ 0     1         0         0;
       0   -b/M     -m*g/M       0;
       0     0         0         1;
-      0 -b/(M*L) -(m+M)*g/(M*L) 0];
+      0 -b/(M*L) -(m+M)*g/(M*L) 0 ];
 B = [0; 1/M; 0; 1/(M*L)];
 C = diag([1 1 1 1]);
 D = zeros(4, 1);
 
-eig(1);
-
-Q = diag([1 1 1 1]);
-R = 2;
+Q = diag([1 10 1 100]);
+R = 10;
 K = lqr(A, B, Q, R);
 
 % x, x_dot, theta, theta_dot
-x0 = [0; -1; pi/2; 0];
+x0 = [0; 0; 0; 0]; % warunek początkowy
+y0 = [2; 0; 0; 0]; % wyjście
 
 out = sim("symulacja.slx", time);
 

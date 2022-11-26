@@ -7,12 +7,12 @@ h = 0.01;
 t = (0:h:tSim)';
 tt = numel(t);
 setTheta = [t, ones(tt,1) * 0];
-setPos = [t, ones(tt,1) * 0];
+setPos = [t, ones(tt,1) * 1];
 
 % warunek poczatkowy i parametry
-thetaDot0 = 10;
-theta0 = 1/20 * pi;
-xDot0 = 1;
+thetaDot0 = 0;
+theta0 = 0;
+xDot0 = 0;
 x0 = 0;
 state0 = [thetaDot0; theta0; xDot0; x0];  
 M = 0.5; % masa wozka
@@ -45,8 +45,8 @@ Kp2 = 6;
 Ti2 = inf;
 Td2 = 1.5;
 % LQR
-Q = diag([0 1000 0 100]);
-R = 5;
+Q = diag([1 1 1 1]);
+R = 100;
 K = lqr(A, B, Q, R);
 N = K(1);
 
